@@ -21,16 +21,15 @@
   --shadow:0 10px 40px rgba(0,229,255,0.22);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
+html,body{margin:0;height:100%;width:100%;background:var(--bg);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  overflow:hidden;overscroll-behavior:none;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;}
 body{
+  position:fixed;inset:0;overscroll-behavior:none;touch-action:manipulation;
   background:
     radial-gradient(1100px 760px at 50% -12%, rgba(0,229,255,0.10), transparent 60%),
     radial-gradient(900px 720px at 105% 108%, rgba(0,255,163,0.08), transparent 60%),
     #000;
-  min-height:100%;
-  position:relative;
 }
 /* subtle tech grid overlay */
 body::before{
@@ -40,7 +39,7 @@ body::before{
   background-size:46px 46px;
   mask-image:radial-gradient(circle at 50% 40%,#000 0%,transparent 80%);
 }
-#app{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:14px 14px calc(22px + env(safe-area-inset-bottom));height:100vh;height:100dvh;overflow-y:auto;display:flex;flex-direction:column;-webkit-overflow-scrolling:touch;}
+#app{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:14px 14px calc(22px + env(safe-area-inset-bottom));height:100%;overflow-y:auto;overscroll-behavior:contain;touch-action:manipulation;display:flex;flex-direction:column;-webkit-overflow-scrolling:touch;}
 
 /* ---------- typography / generic ---------- */
 h1,h2,h3{margin:0;font-weight:700;letter-spacing:.5px;}
@@ -918,7 +917,8 @@ function initMatch3(){
     animating=false;
   })();
 
-  const onResize = ()=>{ computeCell(); for(let r=0;r<SIZE;r++)for(let c=0;c<SIZE;c++)if(board[r][c])positionTile(board[r][c],false); };
+  let _rzT=null;
+  const onResize = ()=>{ if(_rzT) clearTimeout(_rzT); _rzT=setTimeout(()=>{ _rzT=null; const c0=cell; computeCell(); if(cell===c0) return; for(let r=0;r<SIZE;r++)for(let c=0;c<SIZE;c++)if(board[r][c])positionTile(board[r][c],false); },120); };
   window.addEventListener('resize', onResize);
   currentCleanup = ()=>{ window.removeEventListener('resize', onResize); boardEl.innerHTML=''; };
 }
@@ -1116,7 +1116,8 @@ function initParkour(){
   }
   raf=requestAnimationFrame(loop);
 
-  const onResize = ()=>{ const s=setupCanvas(canvas); ctx=s.ctx; W=s.W; H=s.H; speed=Math.max(220,W*0.55); reset(); };
+  let _rzT=null;
+  const onResize = ()=>{ if(_rzT) clearTimeout(_rzT); _rzT=setTimeout(()=>{ _rzT=null; const r0=canvas.getBoundingClientRect(); const w=Math.max(1,r0.width), h=Math.max(1,r0.height); if(w===W && h===H) return; const s=setupCanvas(canvas); ctx=s.ctx; W=s.W; H=s.H; speed=Math.max(220,W*0.55); reset(); },120); };
   window.addEventListener('resize', onResize);
   currentCleanup = ()=>{ cancelAnimationFrame(raf); levelActive=false; chipsBox.innerHTML=''; chipsBox.classList.remove('celebrate'); canvas.removeEventListener('pointerdown',onDown); window.removeEventListener('keydown',onKey); window.removeEventListener('resize',onResize); };
 }
@@ -1469,7 +1470,8 @@ function initPlane(){
     ctx.restore();
   }
   raf=requestAnimationFrame(loop);
-  const onResize = ()=>{ const s=setupCanvas(canvas); ctx=s.ctx; W=s.W; H=s.H; reset(); };
+  let _rzT=null;
+  const onResize = ()=>{ if(_rzT) clearTimeout(_rzT); _rzT=setTimeout(()=>{ _rzT=null; const r0=canvas.getBoundingClientRect(); const w=Math.max(1,r0.width), h=Math.max(1,r0.height); if(w===W && h===H) return; const s=setupCanvas(canvas); ctx=s.ctx; W=s.W; H=s.H; reset(); },120); };
   window.addEventListener('resize', onResize);
   currentCleanup = ()=>{ cancelAnimationFrame(raf); levelActive=false; canvas.removeEventListener('pointermove',onMove); canvas.removeEventListener('pointerdown',onMove); window.removeEventListener('resize',onResize); starsBox.classList.remove('celebrate'); };
 }
