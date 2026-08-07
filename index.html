@@ -1207,7 +1207,7 @@ function initPlane(){
   let bullets=[]; let meteors=[]; let starReveals=[]; let crackRings=[]; // starReveals = 陨石裂开后出现的项目之星；crackRings = 裂开扩散光环
   let meteorsKilled=0, starCount=0; levelStarCount=0;
   let spawnM=0, fireT=0, raf=0, last=0, invuln=0, celebrating=false, revealing=false, pendingStar=false, rushTimer=9;
-  const metSpeed = ()=>Math.max(120, H*0.24);
+  const metSpeed = ()=>Math.max(80, H*0.18); // 下落速度：因移动端画布变短(54/48/42vh)导致通过变难，整体下调约30%（所有陨石含加速陨石均派生自此）
 
   function reset(){ player.x=W*0.28; player.y=H*0.5; player.tx=player.x; player.ty=player.y; bullets=[]; meteors=[]; starReveals=[]; crackRings=[]; spawnM=0.4; fireT=0; invuln=0; revealing=false; pendingStar=false; rushTimer=9; }
   reset();
