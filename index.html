@@ -208,11 +208,11 @@ h1,h2,h3{margin:0;font-weight:700;letter-spacing:.5px;}
 .boss-hp-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--text2);margin-bottom:7px;letter-spacing:.5px;}
 .boss-hp-track{width:100%;height:18px;border-radius:10px;background:var(--panel);border:1px solid var(--border);overflow:hidden;}
 .boss-hp-fill{height:100%;width:100%;border-radius:10px;background:linear-gradient(90deg,#ff7a6e,#ff453a);box-shadow:0 0 12px rgba(255,69,58,.6);transition:width .45s cubic-bezier(.2,.8,.2,1);}
-.q-card{width:100%;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:20px;backdrop-filter:blur(12px);}
-.q-text{font-size:18px;font-weight:600;line-height:1.5;margin-bottom:16px;}
-.q-options{display:grid;gap:10px;}
+.q-card{width:100%;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:16px;backdrop-filter:blur(12px);}
+.q-text{font-size:15.5px;font-weight:600;line-height:1.45;margin-bottom:12px;}
+.q-options{display:grid;gap:8px;}
 .q-opt{
-  text-align:left;padding:14px 16px;border-radius:13px;font-size:15px;color:var(--text);cursor:pointer;
+  text-align:left;padding:11px 14px;border-radius:13px;font-size:13.5px;color:var(--text);cursor:pointer;
   background:rgba(255,255,255,0.04);border:1px solid var(--border);
   transition:transform .14s, background .2s, border-color .2s;
 }
@@ -311,6 +311,10 @@ h1,h2,h3{margin:0;font-weight:700;letter-spacing:.5px;}
   .btn{padding:13px 24px;font-size:15px;}
   .ov-card{padding:20px 18px;}
   .r-stats .r-stat{padding:8px 12px;}
+  .q-card{padding:14px;}
+  .q-text{font-size:14px;line-height:1.4;margin-bottom:10px;}
+  .q-options{gap:7px;}
+  .q-opt{font-size:12.5px;padding:10px 13px;}
 }
 @media (max-height: 620px){
   .canvas-wrap{max-height:42vh;}
@@ -318,6 +322,11 @@ h1,h2,h3{margin:0;font-weight:700;letter-spacing:.5px;}
   #result .r-title-big{font-size:26px;}
   .foot-note{font-size:11px;margin-top:8px;}
   #welcome h1{font-size:23px;}
+  .q-card{padding:12px;}
+  .q-text{font-size:13px;margin-bottom:8px;}
+  .q-options{gap:6px;}
+  .q-opt{font-size:12px;padding:9px 12px;}
+  .boss-figure{width:92px;height:92px;}
 }
 </style>
 </head>
